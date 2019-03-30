@@ -3,6 +3,26 @@
 <br />
 <h2>Grupo Gallardista</h2>
 
+<p>
+  <h2>Inmobiliaria</h2>
+  <b>
+  <b>
+  <h3>Scope</h3>
+    <ul>
+        <li>Retornar listado de publicación</li>
+        <li>Crear publicación</li>
+        <li>Eliminar publicación</li>
+        <li>Updetear publicación</li>
+        <li>Geocalización del departamento en el mapa</li>
+    </ul>
+  <b>
+  <b>
+  <h3>Out of Scope</h3>
+     <ul>
+       <li>Geocalización de los departamentos por barrio</li>
+    </ul>
+</p>
+
 <h2>Integrantes</h2>
 <p>
   Murruni Pablo <a href='mailto:murruni@gmail.com?Subject=UP ArqWEB TP' target='_blank'>murruni@gmail.com</a><br />
