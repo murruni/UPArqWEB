@@ -3,6 +3,8 @@
 <br />
 <h2>Grupo Gallardista</h2>
 
+<p>El trabajo consiste en un negocio inmobiliario, el cual va a listar todos los inmuebles a vender o a alquilar con sus respectivas características: </p>
+
 <p>
   <h2>Inmobiliaria</h2>
   <b>

@@ -1,0 +1,11 @@
+{
+  "name": "inmobiliaria-server-app",
+  "version": "1.0.0",
+  "description": "Server Application for a Real State Agency",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TP Arquitectura Web: Pablo Murruni & Gustavo Romero",
+  "license": "ISC"
+}
