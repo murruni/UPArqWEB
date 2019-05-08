@@ -37,5 +37,5 @@
     <ul>
         <li>docker build -t inmobiliaria-app inmobiliaria-app/.</li>
         <li>docker run -p 8081:8081 -d inmobiliaria-app</li>
-        <li><a href="http://localhost:8081/">Link Aplicación</a></li>
+        <li><a target="_blank" href="http://localhost:8081/">Link Aplicación</a></li>
     </ul>
