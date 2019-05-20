@@ -1,0 +1,1 @@
+const House = require('../models/house');

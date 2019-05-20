@@ -2,13 +2,19 @@
   "name": "inmobiliaria-server-app",
   "version": "1.0.0",
   "description": "Server Application for a Real State Agency",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "TP Arquitectura Web: Pablo Murruni & Gustavo Romero",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
-  }
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.0",
+    "mongoose": "^5.5.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  },
+  "author": "TP Arquitectura Web: Pablo Murruni & Gustavo Romero",
+  "license": "ISC"
 }
