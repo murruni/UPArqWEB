@@ -1,17 +1,18 @@
+<html>
 <h1>UNIVERSIDAD DE PALERMO</h1>
 <h2>Arquitecturas WEB</h2>
-<br />
-<h2>Grupo Gallardista</h2>
 
 <h2>Integrantes</h2>
 <p>
   Murruni Pablo <a href='mailto:murruni@gmail.com?Subject=UP ArqWEB TP' target='_blank'>murruni@gmail.com</a><br />
-  Romero Gustavo <a href='mailto:gustavo.andres.romero@gmail.com?Subject=UP%20ArqWEB%20TP' target='_blank'>gustavo.andres.romero@gmail.com</a> <br />
-  <a href='mailto:murruni@gmail.com,gustavo.andres.romero@gmail.com?Subject=UP%20ArqWEB%20TP' target='_blank'>Mail al grupo</a>
+  Romero Gustavo <a href='mailto:gustavo.andres.romero@gmail.com?Subject=UP%20ArqWEB%20TP' target='_blank'>gustavo.andres.romero@gmail.com</a> </p>
+
+<p>
+    <b>
+        El trabajo consiste en un negocio inmobiliario, el cual va a listar todos los inmuebles a vender o a alquilar con sus respectivas características:
+        </b>
 </p>
-<br>
-<p><b>El trabajo consiste en un negocio inmobiliario, el cual va a listar todos los inmuebles a vender o a alquilar con sus respectivas características: </p>
-<br>
+
 <p>
   <h2>Inmobiliaria</h2>
   <h3>Scope</h3>
@@ -22,20 +23,80 @@
         <li>Actualizar publicación de un inmueble</li>
         <li>Geolocalización del departamento en el mapa</li>
     </ul>
-  <b>
-  <b>
   <h3>Out of Scope</h3>
      <ul>
        <li>Geolocalización de los departamentos por barrio</li>
     </ul>
 </p>
-<br>
+
+
+<p>
 <h2>Como ejecutar la aplicación</h2>
-<br>
-<p> Ejecutar dichos comandos para comenzar a utilizar la aplicación desde UPArqWEB:</p>
+Ejecutar dichos comandos para comenzar a utilizar la aplicación desde UPArqWEB:
 <b>
     <ul>
         <li>docker build -t inmobiliaria-app inmobiliaria-app/.</li>
         <li>docker run -p 8081:8081 -d inmobiliaria-app</li>
         <li><a target='_blank' href="http://localhost:8081/">Link Aplicación</a></li>
     </ul>
+    </b>
+</p>
+
+
+<h2>API</h2>
+<h3>USERS</h3>
+<ul>
+    <li>GET /api/users (retorna la información de todos los usuarios)</li>
+    <li>GET /api/users/X (retorna la información de un usuario específico)</li>
+    <li>POST /api/users (creación de un nuevo usuario)</li>
+    <li>POST /api/users/authenticate (autenticación de un usuario)</li>
+    <li>PUT /api/users/X (actualización de la información de un usuario)</li>
+    <li>GET /api/users/X/apartments (devuelve todos los departamentos del usuario X)</li>
+    <li>GET /api/users/X/apartments/Y (devuelve el departamento Y del usuario X)
+    <li>PUT /api/users/X/apartments/Y (actualiza el departamento Y del usuario X)</li>
+    <li>GET /api/users/X/houses (devuelve todas las casas del usuario X)</li>
+    <li>GET /api/users/X/houses/Y (devuelve la casa Y del usuario X)</li>
+    <li>PUT /api/users/X/houses/Y (actualiza la casa Y del usuario X)</li>
+    <li>PATCH /api/users/X (actualización del nombre de usuario o email)</li>
+    <li>DELETE /api/users/X (elimina un usuario específico)</li>
+</ul>
+
+<h3>APARTMENTS</h3>
+<ul>
+    <li>GET /api/apartments (retorna todos los departamentos)</li>
+    <li>GET /api/apartments/X (retorna un departamento específico)</li>
+    <li>GET /api/apartments/sales (retorna departamentos en venta)</li>
+    <li>GET /api/apartments/rentals (retorna departamentos en alquiler)</li>
+    <li>GET /api/apartments/locations/X (retorna departamentos de un barrio)</li>
+    <li>GET /api/apartments/sales/locations/X (retorna departamentos de un barrio en venta)</li>
+    <li>GET /api/apartments/rentals/locations/X (retorna departamentos de un barrio en alquiler)</li>
+    <li>POST /api/apartments (creación de un nuevo departamento)</li>
+    <li>PUT /api/apartments/X (actualización información de departamento)</li>
+    <li>DELETE /api/apartments/X (elimina un departamento)</li>
+</ul>
+
+<h3>HOUSES</h3>
+<ul>
+    <li>GET /api/houses (retorna todos las casas)</li>
+    <li>GET /api/houses/Y (retorna una casa específico)</li>
+    <li>GET /api/houses/sales (retorna casas en venta)</li>
+    <li>GET /api/houses/rentals (retorna casas en alquiler)</li>
+    <li>GET /api/houses/locations/Y (retorna casas de un barrio)</li>
+    <li>GET /api/houses/sales/locations/Y (retorna casas de un barrio en venta)</li>
+    <li>GET /api/houses/rentals/locations/Y (retorna casas de un barrio en alquiler)</li>
+    <li>POST /api/houses (creación de una nueva casa)</li>
+    <li>PUT /api/houses/Y (actualización información de una casa)</li>
+    <li>DELETE /api/houses/Y (elimina una casa)</li>
+</ul>
+
+<h3>LOCATIONS</h3>
+<ul>
+    <li>GET /api/locations (retorna todos los barrios)</li>
+    <li>GET /api/locations/Z (retorna un barrio )</li>
+    <li>POST /api/locations (creación de un nuevo barrio)</li>
+    <li>PUT /api/locations/Z (actualización información de un barrio)</li>
+    <li>DELETE /api/locations/Z (elimina un barrio)</li>
+</ul>
+
+</p>
+</html>
