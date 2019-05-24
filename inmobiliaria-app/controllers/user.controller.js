@@ -4,51 +4,75 @@ exports.getAll = (req, res, next) => {
     User.find({}, function (err, users) {
         if (err) return next(err);
         res.send(users);
-    });    
+    });
 };
 
 exports.create = (req, res, next) => {
-    let id = parseInt(req.body.id);
-    let name = req.body.name;
-    let pass = req.body.pass;
-
-    // valido los datos ingresados, falta mejorar
-    if (!id || !name || !pass) {
-        res.status(400).send('Missing parameters. ID, name & pass are required.');
+    let usr = getBodyUser(req);
+    if (!usr.user || !usr.pass) {
+        res.status(400).send('Missing parameters. User & Pass are required.');
         next();
     }
-
-    let user = new User({
-        id: id,
-        name: name,
-        pass: pass
-    });
-
-    user.save(function (err) {
+    /** @todo validar que no exista el mismo usuario */
+    usr.save(function (err) {
         if (err) return next(err);
         // tal como sale de la db? no filtro campos?
-        res.send(user);
+        res.send(usr);
     });
 };
 
 exports.get = (req, res, next) => {
-    let id = parseInt(req.params.id);
-
-    User.findOne({ "id": id }, function (err, user) {
+    let user = getUrlUserField(req);
+    User.findOne({ "user": user }, function (err, usr) {
         if (err) return next(err);
-        res.send(user);
+        res.send(usr);
     });
 };
 
 exports.update = (req, res, next) => {
-    // falta codear
+    let user = getUrlUserField(req);
+    let usrGiven = getBodyUser(req);
+    User.findOne({ "user": user }, function (err, usr) {
+        if (err) return next(err);
+        usr.copyAttributesFrom(usrGiven);
+        usr.save(function (err) {
+            if (err) return next(err);
+            // tal como sale de la db? no filtro campos?
+            res.send(usr);
+        });
+    });
 };
 
 exports.delete = (req, res, next) => {
-    let id = parseInt(req.params.id);
-
-    User.deleteOne({ "id": id }, function (err, user) {
+    let user = getUrlUserField(req);
+    User.deleteOne({ "user": user }, function (err, usr) {
         if (err) return next(err);
-        res.send(user);
+        res.send(usr);
     });
 };
+
+exports.authenticate = (req, res, next) => {
+    let usrGiven = getBodyUser(req);
+    User.findOne({ 'user': usrGiven.user }, function (err, usrFound) {
+        if (err) return next(err);
+        if (usrFound.validateLogin(usrGiven)) res.send(true);
+        res.send(false);
+    });
+};
+
+// -------------------------------------------------------------------
+/** @returns User */
+function getBodyUser(req) {
+    var user = new User();
+    /** @todo desconfiar de los datos */
+    if (req.body.user) user.user = req.body.user;
+    if (req.body.pass) user.pass = req.body.pass;
+    if (req.body.email) user.email = req.body.email;
+    return user;
+}
+
+/** @returns user field */
+function getUrlUserField(req) {
+    /** @todo desconfiar de los datos */
+    return req.params.user;
+}

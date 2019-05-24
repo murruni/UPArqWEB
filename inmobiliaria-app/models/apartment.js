@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let ApartmentSchema = new Schema({
-    description: { type: String, required: true, max: 100 },    
+    description: String,
 });
 
 // Export the model
 module.exports = mongoose.model('Apartment', ApartmentSchema);
+
+//module.exports.prototype.someFunction = function () {};

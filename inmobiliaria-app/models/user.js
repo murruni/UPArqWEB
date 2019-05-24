@@ -2,10 +2,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-    id: { type: Number, required: true },
-    name: { type: String, required: true, max: 100 },
-    pass: { type: String, required: true },
+    user: String,
+    pass: String,
+    email: String,
 });
 
 // Export the model
 module.exports = mongoose.model('User', UserSchema);
+
+/** Copy all attributes but user */
+module.exports.prototype.copyAttributesFrom = function (usrFrom) {
+    if (usrFrom.pass) this.pass = usrFrom.pass;
+    if (usrFrom.email) this.email = usrFrom.email;
+};
+
+module.exports.prototype.validateLogin = function (usrData) {
+    return usrData && this.user === usrData.user && this.pass === usrData.pass;
+};
