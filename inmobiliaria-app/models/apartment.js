@@ -8,4 +8,4 @@ let ApartmentSchema = new Schema({
 // Export the model
 module.exports = mongoose.model('Apartment', ApartmentSchema);
 
-//module.exports.prototype.someFunction = function () {};
+// module.exports.prototype.someFunction = function () {};
