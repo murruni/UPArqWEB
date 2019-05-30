@@ -13,7 +13,7 @@
     "mongoose": "^5.5.9"
   },
   "devDependencies": {
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.1"
   },
   "author": "TP Arquitectura Web: Pablo Murruni & Gustavo Romero",
   "license": "ISC"

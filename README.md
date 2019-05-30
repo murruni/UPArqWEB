@@ -21,11 +21,6 @@
         <li>Crear publicación de un inmueble</li>
         <li>Eliminar publicación de un inmueble</li>
         <li>Actualizar publicación de un inmueble</li>
-        <li>Geolocalización del departamento en el mapa</li>
-    </ul>
-  <h3>Out of Scope</h3>
-     <ul>
-       <li>Geolocalización de los departamentos por barrio</li>
     </ul>
 </p>
 
