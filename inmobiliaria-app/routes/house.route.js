@@ -16,13 +16,6 @@ GET /houses/rentals/locations/Y  (retorna casas de un barrio en alquiler)
 POST /houses  (creación de una nueva casa)
 PUT /houses/Y  (actualización información de una casa)
 DELETE /houses/Y  (elimina una casa)
-Locations: (solo trabajaremos en capital federal)
-
-GET /locations  (retorna todos los barrios)
-GET /locations/Z  (retorna un barrio )
-POST /locations  (creación de un nuevo barrio)
-PUT /locations/Z  (actualización información de un barrio)
-DELETE /locations/Z  (elimina un barrio)
 */
 
 module.exports = router;
