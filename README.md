@@ -21,11 +21,6 @@
         <li>Crear publicación de un inmueble</li>
         <li>Eliminar publicación de un inmueble</li>
         <li>Actualizar publicación de un inmueble</li>
-        <li>Geolocalización del departamento en el mapa</li>
-    </ul>
-  <h3>Out of Scope</h3>
-     <ul>
-       <li>Geolocalización de los departamentos por barrio</li>
     </ul>
 </p>
 
@@ -65,11 +60,7 @@ Ejecutar dichos comandos para comenzar a utilizar la aplicación desde UPArqWEB:
 <ul>
     <li>GET /api/apartments (retorna todos los departamentos)</li>
     <li>GET /api/apartments/X (retorna un departamento específico)</li>
-    <li>GET /api/apartments/sales (retorna departamentos en venta)</li>
-    <li>GET /api/apartments/rentals (retorna departamentos en alquiler)</li>
-    <li>GET /api/apartments/locations/X (retorna departamentos de un barrio)</li>
-    <li>GET /api/apartments/sales/locations/X (retorna departamentos de un barrio en venta)</li>
-    <li>GET /api/apartments/rentals/locations/X (retorna departamentos de un barrio en alquiler)</li>
+    <li>GET /api/apartments?location=X&sale=true  (retorna departamentos de un barrio y en venta o en alquiler si es false)<li>
     <li>POST /api/apartments (creación de un nuevo departamento)</li>
     <li>PUT /api/apartments/X (actualización información de departamento)</li>
     <li>DELETE /api/apartments/X (elimina un departamento)</li>
@@ -79,11 +70,7 @@ Ejecutar dichos comandos para comenzar a utilizar la aplicación desde UPArqWEB:
 <ul>
     <li>GET /api/houses (retorna todos las casas)</li>
     <li>GET /api/houses/Y (retorna una casa específico)</li>
-    <li>GET /api/houses/sales (retorna casas en venta)</li>
-    <li>GET /api/houses/rentals (retorna casas en alquiler)</li>
-    <li>GET /api/houses/locations/Y (retorna casas de un barrio)</li>
-    <li>GET /api/houses/sales/locations/Y (retorna casas de un barrio en venta)</li>
-    <li>GET /api/houses/rentals/locations/Y (retorna casas de un barrio en alquiler)</li>
+    <li>GET /api/houses?location=X&sale=true  (retorna casas de un barrio y en venta o en alquiler si es false)<li>
     <li>POST /api/houses (creación de una nueva casa)</li>
     <li>PUT /api/houses/Y (actualización información de una casa)</li>
     <li>DELETE /api/houses/Y (elimina una casa)</li>
