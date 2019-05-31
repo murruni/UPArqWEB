@@ -15,7 +15,7 @@ exports.create = (req, res, next) => {
     }
     location.save(function (err) {
         if (err) return next(err);
-        res.send(location);
+        res.status(201).send(location);
     });
 };
 

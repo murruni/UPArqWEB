@@ -32,7 +32,7 @@ exports.create = (req, res, next) => {
     }
     house.save(function (err) {
         if (err) return next(err);
-        res.send(house);
+        res.status(201).send(house);
     });
 };
 

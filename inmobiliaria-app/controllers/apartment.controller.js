@@ -1,1 +1,0 @@
-const Apartment = require('../models/apartment');

@@ -56,21 +56,11 @@
     <li>DELETE /api/users/X (elimina un usuario específico)</li>
 </ul>
 
-<h3>APARTMENTS</h3>
-<ul>
-    <li>GET /api/apartments (retorna todos los departamentos)</li>
-    <li>GET /api/apartments/X (retorna un departamento específico)</li>
-    <li>GET /api/apartments?location=X&sale=true  (retorna departamentos de un barrio y en venta o en alquiler si es false)<li>
-    <li>POST /api/apartments (creación de un nuevo departamento)</li>
-    <li>PUT /api/apartments/X (actualización información de departamento)</li>
-    <li>DELETE /api/apartments/X (elimina un departamento)</li>
-</ul>
-
 <h3>HOUSES</h3>
 <ul>
     <li>GET /api/houses (retorna todos las casas)</li>
     <li>GET /api/houses/Y (retorna una casa específico)</li>
-    <li>GET /api/houses?location=X&sale=true  (retorna casas de un barrio y en venta o en alquiler si es false)<li>
+    <li>GET /api/houses?location=X&sale=true  (retorna casas de un barrio y en venta o en alquiler si es false)</li>
     <li>POST /api/houses (creación de una nueva casa)</li>
     <li>PUT /api/houses/Y (actualización información de una casa)</li>
     <li>DELETE /api/houses/Y (elimina una casa)</li>

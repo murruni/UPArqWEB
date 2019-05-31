@@ -2,7 +2,12 @@ const User = require('../models/user');
 
 exports.getAll = (req, res, next) => {
     User.find({}, function (err, users) {
-        if (err) return next(err);
+        if (err) {
+            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+                res.status(503).send('Service Unavailable');
+            }
+            return next(err);
+        }
         res.send(users);
     });
 };
@@ -11,42 +16,59 @@ exports.create = (req, res, next) => {
     let usr = getBodyUser(req);
     if (!usr.user || !usr.pass) {
         res.status(400).send('Missing parameters. User & Pass are required.');
-        next();
+        return next();
     }
-    /** @todo validar que no exista el mismo usuario */
     usr.save(function (err) {
-        if (err) return next(err);
-        // tal como sale de la db? no filtro campos?
-        res.send(usr);
+        if (err) {
+            if (err.name === 'MongoError' && err.code === 11000) {
+                res.status(400).send('User already exists.');
+            }
+            return next(err);
+        }
+        res.status(201).send(usr);
     });
 };
 
 exports.get = (req, res, next) => {
-    let user = getUrlUserField(req);
-    User.findOne({ "user": user }, function (err, usr) {
-        if (err) return next(err);
+    let id = getUrlIdField(req);
+    User.findById(id, function (err, usr) {
+        if (err) {
+            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+                res.status(400).send('Not user found');
+            }
+            return next(err);
+        }
         res.send(usr);
     });
 };
 
 exports.update = (req, res, next) => {
-    let user = getUrlUserField(req);
+    let id = getUrlIdField(req);
     let usrGiven = getBodyUser(req);
-    User.findOne({ "user": user }, function (err, usr) {
-        if (err) return next(err);
+    User.findById(id, function (err, usr) {
+        if (err) {
+            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+                res.status(400).send('Not user found');
+            }
+            return next(err);
+        }
         usr.copyAttributesFrom(usrGiven);
         usr.save(function (err) {
             if (err) return next(err);
-            // tal como sale de la db? no filtro campos?
             res.send(usr);
         });
     });
 };
 
 exports.delete = (req, res, next) => {
-    let user = getUrlUserField(req);
-    User.deleteOne({ "user": user }, function (err, usr) {
-        if (err) return next(err);
+    let id = getUrlIdField(req);
+    User.findByIdAndDelete(id, function (err, usr) {
+        if (err) {
+            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+                res.status(400).send('Not user found');
+            }
+            return next(err);
+        }
         res.send(usr);
     });
 };
@@ -54,7 +76,12 @@ exports.delete = (req, res, next) => {
 exports.authenticate = (req, res, next) => {
     let usrGiven = getBodyUser(req);
     User.findOne({ 'user': usrGiven.user }, function (err, usrFound) {
-        if (err) return next(err);
+        if (err) {
+            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+                res.status(400).send('Not user found');
+            }
+            return next(err);
+        }
         if (usrFound.validateLogin(usrGiven)) res.send(true);
         res.send(false);
     });
@@ -71,8 +98,8 @@ function getBodyUser(req) {
     return user;
 }
 
-/** @returns user field */
-function getUrlUserField(req) {
+/** @returns id field */
+function getUrlIdField(req) {
     /** @todo desconfiar de los datos */
-    return req.params.user;
+    return req.params.id;
 }

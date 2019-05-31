@@ -26,10 +26,11 @@ app.use((req, res, next) => {
     next();
 });
 
-
 // inicio web (no app)
 app.get('/', (req, res, next) => {
-    let archivo = fs.readFileSync('../README.md', 'utf-8');
+    var file = 'README.md';
+    file = fs.existsSync(file) ? file : '../' + file;
+    let archivo = fs.readFileSync(file, 'utf-8');
     res.send(archivo);
     next();
 });

@@ -4,9 +4,6 @@ const router = express.Router();
 // users routes
 router.use('/users', require('./user.route'));
 
-// apartments routes
-router.use('/apartments', require('./apartment.route'));
-
 // houses routes
 router.use('/houses', require('./house.route'));
 
