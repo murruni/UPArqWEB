@@ -1,6 +1,5 @@
 const Location = require('../models/location');
 
-
 exports.getAll = (req, res, next) => {
     Location.find({}, function (err, locations) {
         if (err) return next(err);
@@ -8,17 +7,14 @@ exports.getAll = (req, res, next) => {
     });
 };
 
-
 exports.create = (req, res, next) => {
-    let location = getBodyUser(req);
+    let location = getBodyLocation(req);
     if (!location.name) {
         res.status(400).send('Missing parameters. Name is required.');
         next();
     }
-    /** @todo validar que no exista el mismo usuario */
     location.save(function (err) {
         if (err) return next(err);
-        // tal como sale de la db? no filtro campos?
         res.send(location);
     });
 };
@@ -34,13 +30,12 @@ exports.get = (req, res, next) => {
 
 exports.update = (req, res, next) => {
     let name = getLocationName(req);
-    let usrGiven = getBodyUser(req);
+    let locationGiven = getBodyLocation(req);
     Location.findOne({ "name": name }, function (err, location) {
         if (err) return next(err);
-        location.copyAttributesFrom(usrGiven);
+        location.copyAttributesFrom(locationGiven);
         location.save(function (err) {
             if (err) return next(err);
-            // tal como sale de la db? no filtro campos?
             res.send(location);
         });
     });
@@ -55,9 +50,9 @@ exports.delete = (req, res, next) => {
 };
 
 
-
+// ------------------------------------------------------------------------
 /** @returns Location */
-function getBodyUser(req) {
+function getBodyLocation(req) {
     var location = new Location();
     /** @todo desconfiar de los datos */
     if (req.body.name) location.name = req.body.name;

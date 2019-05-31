@@ -1,29 +1,27 @@
 const House = require('../models/house');
 
-
-/**
- * @TODO las location deben ser entidades no String
- */
-
-
 exports.getAll = (req, res, next) => {
     const query = req.query;
     var house = {};
     if (query.location) house.location = query.location;
     if (query.sale) house.sale = JSON.parse(query.sale);
 
-    House.find(house, function (err, houses) {
-        if (err) return next(err);
-        res.send(houses);
-    });
+    House.find(house)
+        .populate('location')
+        .exec(function (err, houses) {
+            if (err) return next(err);
+            res.send(houses);
+        });
 };
 
 exports.get = (req, res, next) => {
     let id = getUrlIdField(req);
-    House.findOne({ "_id": id }, function (err, houses) {
-        if (err) return next(err);
-        res.send(houses);
-    });
+    House.findById(id)
+        .populate('location')
+        .exec(function (err, houses) {
+            if (err) return next(err);
+            res.send(houses);
+        });
 };
 
 exports.create = (req, res, next) => {
@@ -41,19 +39,21 @@ exports.create = (req, res, next) => {
 exports.update = (req, res, next) => {
     let id = getUrlIdField(req);
     let houseGiven = getBodyHouse(req);
-    House.findOne({ "_id": id }, function (err, house) {
-        if (err) return next(err);
-        house.copyAttributesFrom(houseGiven);
-        house.save(function (err) {
+    House.findById(id)
+        .populate('location')
+        .exec(function (err, house) {
             if (err) return next(err);
-            res.send(house);
-        })
-    });
+            house.copyAttributesFrom(houseGiven);
+            house.save(function (err) {
+                if (err) return next(err);
+                res.send(house);
+            })
+        });
 }
 
 exports.delete = (req, res, next) => {
     let id = getUrlIdField(req);
-    House.deleteOne({ "_id": id }, function (err, house) {
+    House.findByIdAndDelete(id, function (err, house) {
         if (err) return next(err);
         res.send(house);
     });
