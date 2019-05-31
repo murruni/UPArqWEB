@@ -25,14 +25,14 @@
 </p>
 
 
+
 <p>
 <h2>Como ejecutar la aplicación</h2>
-Ejecutar dichos comandos para comenzar a utilizar la aplicación desde UPArqWEB:
 <b>
     <ul>
-        <li>docker build -t inmobiliaria-app inmobiliaria-app/.</li>
-        <li>docker run -p 8081:8081 -d inmobiliaria-app</li>
+        <li>node inmobiliaria-app/app.js</li>
         <li><a target='_blank' href="http://localhost:8081/">Link Aplicación</a></li>
+        <li>requiere tener instalado mongodb con escucha en puerto por defecto</li>
     </ul>
     </b>
 </p>

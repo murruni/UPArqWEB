@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const user_controller = require('../controllers/house.controller');
+const house_controller = require('../controllers/house.controller');
 
 /*
 Houses: (las búsquedas solo serán por barrio y venta/alquiler)
@@ -13,5 +13,11 @@ POST /houses  (creación de una nueva casa)
 PUT /houses/Y  (actualización información de una casa)
 DELETE /houses/Y  (elimina una casa)
 */
+
+router.get('/', house_controller.getAll);
+router.get('/:id', house_controller.get);
+router.post('/', house_controller.create);
+router.put('/:id', house_controller.update);
+router.delete('/:id', house_controller.delete);
 
 module.exports = router;
