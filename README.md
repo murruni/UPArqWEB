@@ -42,37 +42,32 @@
 <h3>USERS</h3>
 <ul>
     <li>GET /api/users (retorna la información de todos los usuarios)</li>
-    <li>GET /api/users/X (retorna la información de un usuario específico)</li>
+    <li>GET /api/users/id (retorna la información de un usuario específico)</li>
     <li>POST /api/users (creación de un nuevo usuario)</li>
     <li>POST /api/users/authenticate (autenticación de un usuario)</li>
-    <li>PUT /api/users/X (actualización de la información de un usuario)</li>
-    <li>GET /api/users/X/apartments (devuelve todos los departamentos del usuario X)</li>
-    <li>GET /api/users/X/apartments/Y (devuelve el departamento Y del usuario X)
-    <li>PUT /api/users/X/apartments/Y (actualiza el departamento Y del usuario X)</li>
-    <li>GET /api/users/X/houses (devuelve todas las casas del usuario X)</li>
-    <li>GET /api/users/X/houses/Y (devuelve la casa Y del usuario X)</li>
-    <li>PUT /api/users/X/houses/Y (actualiza la casa Y del usuario X)</li>
-    <li>PATCH /api/users/X (actualización del nombre de usuario o email)</li>
-    <li>DELETE /api/users/X (elimina un usuario específico)</li>
+    <li>PUT /api/users/id (actualización de la información de un usuario)</li>
+    <li>GET /api/users/id/houses (devuelve todas las casas del usuario)</li>
+    <li>PATCH /api/users/id (actualización del nombre de usuario o email)</li>
+    <li>DELETE /api/users/id (elimina un usuario específico)</li>
 </ul>
 
 <h3>HOUSES</h3>
 <ul>
     <li>GET /api/houses (retorna todos las casas)</li>
-    <li>GET /api/houses/Y (retorna una casa específico)</li>
+    <li>GET /api/houses/id (retorna una casa específico)</li>
     <li>GET /api/houses?location=X&sale=true  (retorna casas de un barrio y en venta o en alquiler si es false)</li>
     <li>POST /api/houses (creación de una nueva casa)</li>
-    <li>PUT /api/houses/Y (actualización información de una casa)</li>
+    <li>PUT /api/houses/id (actualización información de una casa)</li>
     <li>DELETE /api/houses/Y (elimina una casa)</li>
 </ul>
 
 <h3>LOCATIONS</h3>
 <ul>
     <li>GET /api/locations (retorna todos los barrios)</li>
-    <li>GET /api/locations/Z (retorna un barrio )</li>
+    <li>GET /api/locations/id (retorna un barrio )</li>
     <li>POST /api/locations (creación de un nuevo barrio)</li>
-    <li>PUT /api/locations/Z (actualización información de un barrio)</li>
-    <li>DELETE /api/locations/Z (elimina un barrio)</li>
+    <li>PUT /api/locations/id (actualización información de un barrio)</li>
+    <li>DELETE /api/locations/id (elimina un barrio)</li>
 </ul>
 
 </p>

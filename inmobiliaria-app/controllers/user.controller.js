@@ -12,6 +12,22 @@ exports.getAll = (req, res, next) => {
     });
 };
 
+exports.getHouses = (req, res, next) => {
+    let id = getUrlIdField(req);
+    User.findById(id)
+        .populate('houses')
+        .exec(function (err, user) {
+            if (err) {
+                if (err.name == 'CastError' && err.kind == 'ObjectId') {
+                    res.status(400).send('Not user found');
+                }
+                console.log(err);
+                return next(err);
+            }
+            res.send(user.houses);
+        });
+};
+
 exports.create = (req, res, next) => {
     let usr = getBodyUser(req);
     if (!usr.user || !usr.pass) {
@@ -95,6 +111,7 @@ function getBodyUser(req) {
     if (req.body.user) user.user = req.body.user;
     if (req.body.pass) user.pass = req.body.pass;
     if (req.body.email) user.email = req.body.email;
+    if (req.body.houses) user.houses = req.body.houses;
     return user;
 }
 

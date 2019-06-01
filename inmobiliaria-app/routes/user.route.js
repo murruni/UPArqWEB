@@ -11,15 +11,13 @@ POST   /users/authenticate  (autenticación de un usuario)
 PUT    /users/X  (actualización de la información de un usuario)
 PATCH  /users/X  (actualización del nombre de usuario o email)
 DELETE /users/X  (elimina un usuario específico)
-
 GET    /users/X/houses (devuelve todas las casas del usuario X)
-GET    /users/X/houses/Y (devuelve la casa Y del usuario X)
-PUT    /users/X/houses/Y (actualiza la casa Y del usuario X)
 */
 
 // basic path /api/users/
 router.get('/', user_controller.getAll);
 router.get('/:id', user_controller.get);
+router.get('/:id/houses', user_controller.getHouses);
 router.post('/', user_controller.create);
 router.post('/authenticate', user_controller.authenticate);
 router.put('/:id', user_controller.update);
