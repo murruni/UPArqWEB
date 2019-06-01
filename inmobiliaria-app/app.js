@@ -35,8 +35,14 @@ app.get('/', (req, res, next) => {
     next();
 });
 
-// middleware app routes
+// middleware api routes
 app.use('/api', require('./routes/routes'));
+
+// middleware for others routes and verbs
+app.all('/*', function(req, res, next){
+    res.status(501).send('Not Implemented yet');
+    return(next);
+});
 
 // start the engine
 app.listen(PORT, () => {
