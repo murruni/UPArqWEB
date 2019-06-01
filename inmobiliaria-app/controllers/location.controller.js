@@ -1,7 +1,10 @@
 const Location = require('../models/location');
 
 exports.getAll = (req, res, next) => {
-    Location.find({}, function (err, locations) {
+    const query = req.query;
+    var location = {};
+    if (query.name) location.name = query.name;
+    Location.find(location, function (err, locations) {
         if (err) return next(err);
         res.send(locations);
     });
@@ -21,18 +24,28 @@ exports.create = (req, res, next) => {
 
 
 exports.get = (req, res, next) => {
-    let name = getLocationName(req);
-    Location.findOne({ "name": name }, function (err, location) {
-        if (err) return next(err);
+    let id = getLocationId(req);
+    Location.findById(id, function (err, location) {
+        if (err) {
+            if (err.name == 'CastError' && err.kind == 'ObjectId') {
+                res.status(400).send('Not location found');
+            }
+            return next(err);
+        }
         res.send(location);
     });
 };
 
 exports.update = (req, res, next) => {
-    let name = getLocationName(req);
+    let id = getLocationId(req);
     let locationGiven = getBodyLocation(req);
-    Location.findOne({ "name": name }, function (err, location) {
-        if (err) return next(err);
+    Location.findById(id, function (err, location) {
+        if (err) {
+            if (err.name == 'CastError' && err.kind == 'ObjectId') {
+                res.status(400).send('Not location found');
+            }
+            return next(err);
+        }
         location.copyAttributesFrom(locationGiven);
         location.save(function (err) {
             if (err) return next(err);
@@ -42,9 +55,14 @@ exports.update = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
-    let location = getLocationName(req);
-    Location.deleteOne({ "name": location }, function (err, location) {
-        if (err) return next(err);
+    let id = getLocationId(req);
+    Location.findByIdAndDelete(id, function (err, location) {
+        if (err) {
+            if (err.name == 'CastError' && err.kind == 'ObjectId') {
+                res.status(400).send('Not location found');
+            }
+            return next(err);
+        }
         res.send(location);
     });
 };
@@ -60,8 +78,8 @@ function getBodyLocation(req) {
     return location;
 }
 
-/** @returns location name*/
-function getLocationName(req) {
+/** @returns location id*/
+function getLocationId(req) {
     /** @todo desconfiar de los datos */
-    return req.params.location;
+    return req.params.id;
 }

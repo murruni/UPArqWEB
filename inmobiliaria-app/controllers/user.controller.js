@@ -3,7 +3,7 @@ const User = require('../models/user');
 exports.getAll = (req, res, next) => {
     User.find({}, function (err, users) {
         if (err) {
-            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+            if (err.name == 'CastError' && err.kind == 'ObjectId') {
                 res.status(503).send('Service Unavailable');
             }
             return next(err);
@@ -33,7 +33,7 @@ exports.get = (req, res, next) => {
     let id = getUrlIdField(req);
     User.findById(id, function (err, usr) {
         if (err) {
-            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+            if (err.name == 'CastError' && err.kind == 'ObjectId') {
                 res.status(400).send('Not user found');
             }
             return next(err);
@@ -47,7 +47,7 @@ exports.update = (req, res, next) => {
     let usrGiven = getBodyUser(req);
     User.findById(id, function (err, usr) {
         if (err) {
-            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+            if (err.name == 'CastError' && err.kind == 'ObjectId') {
                 res.status(400).send('Not user found');
             }
             return next(err);
@@ -64,7 +64,7 @@ exports.delete = (req, res, next) => {
     let id = getUrlIdField(req);
     User.findByIdAndDelete(id, function (err, usr) {
         if (err) {
-            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+            if (err.name == 'CastError' && err.kind == 'ObjectId') {
                 res.status(400).send('Not user found');
             }
             return next(err);
@@ -77,7 +77,7 @@ exports.authenticate = (req, res, next) => {
     let usrGiven = getBodyUser(req);
     User.findOne({ 'user': usrGiven.user }, function (err, usrFound) {
         if (err) {
-            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+            if (err.name == 'CastError' && err.kind == 'ObjectId') {
                 res.status(400).send('Not user found');
             }
             return next(err);

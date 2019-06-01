@@ -18,9 +18,14 @@ exports.get = (req, res, next) => {
     let id = getUrlIdField(req);
     House.findById(id)
         .populate('location')
-        .exec(function (err, houses) {
-            if (err) return next(err);
-            res.send(houses);
+        .exec(function (err, house) {
+            if (err) {
+                if(err.name == 'CastError' && err.kind == 'ObjectId'){
+                    res.status(400).send('Not house found');
+                }
+                return next(err);
+            }
+            res.send(house);
         });
 };
 
@@ -42,10 +47,14 @@ exports.update = (req, res, next) => {
     House.findById(id)
         .populate('location')
         .exec(function (err, house) {
-            if (err) return next(err);
+            if (err) {
+                if(err.name == 'CastError' && err.kind == 'ObjectId'){
+                    res.status(400).send('Not house found');
+                }
+                return next(err);
+            }
             house.copyAttributesFrom(houseGiven);
             house.save(function (err) {
-                if (err) return next(err);
                 res.send(house);
             })
         });
@@ -54,7 +63,12 @@ exports.update = (req, res, next) => {
 exports.delete = (req, res, next) => {
     let id = getUrlIdField(req);
     House.findByIdAndDelete(id, function (err, house) {
-        if (err) return next(err);
+        if (err) {
+            if(err.name == 'CastError' && err.kind == 'ObjectId'){
+                res.status(400).send('Not house found');
+            }
+            return next(err);
+        }
         res.send(house);
     });
 }
