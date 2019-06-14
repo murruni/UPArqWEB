@@ -10,7 +10,10 @@ var app = express();
 // mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://localhost:27017/inmobiliaria';
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDB, { 
+    useCreateIndex: true,
+    useNewUrlParser: true
+ });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
