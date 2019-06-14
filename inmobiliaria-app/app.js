@@ -34,7 +34,7 @@ app.get('/', (req, res, next) => {
     file = fs.existsSync(file) ? file : '../' + file;
     let archivo = fs.readFileSync(file, 'utf-8');
     res.send(archivo);
-    next();
+    //next();
 });
 
 // middleware api routes

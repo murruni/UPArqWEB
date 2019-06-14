@@ -50,7 +50,7 @@ exports.get = (req, res, next) => {
     User.findById(id, function (err, usr) {
         if (err) {
             if (err.name == 'CastError' && err.kind == 'ObjectId') {
-                res.status(400).send('Not user found');
+                res.status(404).send('Not user found');
             }
             return next(err);
         }
